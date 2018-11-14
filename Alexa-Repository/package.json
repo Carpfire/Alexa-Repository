@@ -1,0 +1,15 @@
+{
+  "name": "alexamongo",
+  "version": "1.0.0",
+  "description": "Attempting to integrate a mongoose app into an intent handler for an Alexa skill",
+  "main": "Weather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Liam Carpenter",
+  "license": "ISC",
+  "dependencies": {
+    "cb": "^0.1.0",
+    "mongoose": "^5.3.9"
+  }
+}
