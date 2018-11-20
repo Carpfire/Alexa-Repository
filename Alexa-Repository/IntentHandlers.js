@@ -1,4 +1,4 @@
-nes (89 sloc)  2.87 KB
+
 /* eslint-disable  func-names */
 /* eslint-disable  no-console */
 
@@ -27,7 +27,7 @@ const JSONHandler = {
       && handlerInput.requestEnvelope.request.intent.name === "DateTimeStamp";
   },
   handle(handlerInput) {
-    var AlexaData = require('./models/alexaData')
+    var AlexaData = require('./models/alexaData');
 
     var mongoose = require('mongoose');
     var mongoDB = 'mongodb://carpenter:Mayyam17@ds131099.mlab.com:31099/alexadata';
@@ -40,21 +40,21 @@ const JSONHandler = {
 
 alexaData.save(function(err){
   if (err) {
-  console.log(err)
-return
+  console.log(err);
+return;
 }
 else{
-  console.log('New Data' + alexaData)
-  db.close()
+  console.log('New Data' + alexaData);
+  db.close();
 }
-})
+});
 
 
     mongoose.connection.close();
 
     }
-  }
-}
+  };
+
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
@@ -121,7 +121,8 @@ exports.handler = skillBuilder
     HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
-    SessionEndedRequestHandler
+    SessionEndedRequestHandler,
+    JSONHandler
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();

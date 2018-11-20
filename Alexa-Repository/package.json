@@ -9,6 +9,9 @@
   "author": "Liam Carpenter",
   "license": "ISC",
   "dependencies": {
+    "ask-sdk-core": "^2.3.0",
+    "ask-sdk-dynamodb-persistence-adapter": "^2.3.0",
+    "ask-sdk-model": "^1.9.0",
     "cb": "^0.1.0",
     "mongoose": "^5.3.9"
   }
