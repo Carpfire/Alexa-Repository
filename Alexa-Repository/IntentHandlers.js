@@ -30,7 +30,7 @@ const JSONHandler = {
     var AlexaData = require('./models/alexaData');
 
     var mongoose = require('mongoose');
-    var mongoDB = 'mongodb://carpenter:Mayyam17@ds131099.mlab.com:31099/alexadata';
+    var mongoDB = 'mongodb:/{UserName}:{password}@ds131099.mlab.com:31099/alexadata';
     mongoose.connect(mongoDB, { useNewUrlParser: true });
     mongoose.Promise = global.Promise;
     var db = mongoose.connection;
