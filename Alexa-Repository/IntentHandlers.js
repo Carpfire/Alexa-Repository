@@ -11,7 +11,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the Alexa Skills Kit, you can say hello!';
+    const speechText = 'Did something cool just happened? Let me know!';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -31,12 +31,12 @@ const JSONHandler = {
 
     var mongoose = require('mongoose');
     var mongoDB = 'mongodb://carpenter:Mayyam17@ds131099.mlab.com:31099/alexadata';
-    mongoose.connect(mongoDB);
+    mongoose.connect(mongoDB, { useNewUrlParser: true });
     mongoose.Promise = global.Promise;
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-    var alexaData = new AlexaData(JSON.parse(handlerInput));
+    var alexaData = new AlexaData(handlerInput);
 
 alexaData.save(function(err){
   if (err) {
@@ -44,14 +44,18 @@ alexaData.save(function(err){
 return;
 }
 else{
-  console.log('New Data' + alexaData);
+  console.log("Success!");
   db.close();
 }
 });
 
+const speechText = 'Succesfully Saved!';
 
-    mongoose.connection.close();
-
+return handlerInput.responseBuilder
+  .speak(speechText)
+  .reprompt(speechText)
+  .withSimpleCard( speechText)
+  .getResponse();
     }
   };
 
@@ -118,7 +122,6 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
